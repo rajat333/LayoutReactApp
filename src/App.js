@@ -19,18 +19,6 @@ import LogOut from './components/LogOut/LogOut';
 const Home = asyncComponent(
     () => import ('./components/Home/Home').then(module => module.default)
 )
-const Login = asyncComponent(
-    () => import ('./components/Login/Login').then(module => module.default)
-)
-const ContactUs = asyncComponent(
-    () => import ('./components/ContactUs/ContactUs').then(module => module.default)
-)
-const AboutUs = asyncComponent(
-    () => import ('./components/AboutUs/AboutUs').then(module => module.default)
-)
-const Register = asyncComponent(
-    () => import ('./components/Register/Register').then(module => module.default)
-)
 const Dashboard = asyncComponent(
     () => import ('./components/Dashboard/Dashboard').then(module => module.default)
 )
@@ -74,7 +62,7 @@ class App extends Component {
                     <div>
                         <Switch>
                             <Route exact path="/" component={Home}/>
-                            <Route component={My404Component}/>
+                            <Route component={Home}/>
                         </Switch>
 
                     </div>

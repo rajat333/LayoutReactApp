@@ -103,8 +103,7 @@ class Register extends Component {
                 ""
             }
           </div>
-                <Header/>
-               <div className="col-md-6 col-md-offset-3">
+                <div className="col-md-6 col-md-offset-3">
                { /* React toastify for toast container */  }
                {this.props.registering? <ToastContainer   /> : null } 
                     <h2>Register</h2> 

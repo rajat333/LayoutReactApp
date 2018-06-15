@@ -13,7 +13,6 @@ class ContactUs extends Component{
     render(){
         return(
             <div className="Contact">
-             <Header />   
              <h1>Contact Us</h1>
              <br/><br/><br/><br/><br/>
              <form className="form-horizontal" action="/action_page.php">
