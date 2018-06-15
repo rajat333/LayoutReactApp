@@ -1,0 +1,70 @@
+{
+  "name": "userapp",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "glamor": "^2.20.40",
+    "google-map-react": "^1.0.3",
+    "jest-enzyme": "^6.0.1",
+    "jquery": "^3.3.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-hot-loader": "^4.0.0",
+    "react-intl": "^2.4.0",
+    "react-js-pagination": "^3.0.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "react-spinners": "^0.3.2",
+    "react-toastify": "4.0.2",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "thunk": "0.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test11": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:update": "jest --updateSnapshot"
+  },
+  "jest": {
+    "verbose": true,
+    "setupFiles": [
+      "./test/jestsetup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy",
+      "Home": "./src/components/Home/Home",
+      "Login": "./src/components/Login/Login",
+      "Countdown": "<rootDir>/app/components/Countdown.jsx"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-navigation)"
+    ],
+    "setupTestFrameworkScriptFile": "./localStorageData.js",
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ]
+  },
+  "devDependencies": {
+    "babel-jest": "^23.0.1",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.1.0",
+    "react-test-renderer": "^16.4.0"
+  }
+}

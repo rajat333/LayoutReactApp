@@ -1,0 +1,10 @@
+thead tr th {
+    text-align: center;
+}
+tbody tr td{
+    font-size: 15px;
+    text-align: center;
+}
+.pagination{
+    margin: 10px 0px;
+}
