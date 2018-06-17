@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Sidebar from "../Sidebar/Sidebar";
-import { userActions } from "../../actions/users-action";
+import { userActions } from "../../../actions/users-action";
 import "./Profile.css";
 
 class Profile extends Component{

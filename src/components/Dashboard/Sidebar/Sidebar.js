@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import "./Sidebar.css";
 import {connect} from "react-redux";
-import {userActions} from "../../actions/users-action";
+import {userActions} from "../../../actions/users-action";
 
 class Sidebar extends Component {
 
@@ -16,14 +16,22 @@ class Sidebar extends Component {
     logOuthandler() {
         this.props.logout();
     }
+   
+    componentWillMount(){
+        console.log("....sidebar...",this.props);
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log("....Sidebar...",nextProps);
+    }
     render() {
         return (
             <div className="Sidebar">
                 <div className="sidenav">
-                    <Link to="/dashboard" className="active">Dashboard</Link >
-                    <Link to="/profile">Profile</Link >
-                    <Link to="/ticket">Ticket</Link >
-                    <Link to="/" onClick={this.logOuthandler}>Log Out</Link >
+                    <Link to="/dashboard/main" className="active" style={{ color: this.props.currentMenu ==="/dashboard/main" ? "blue" : "white" }}>Dashboard</Link >
+                    <Link to="/dashboard/profile" style={{ color: this.props.currentMenu ==="/dashboard/profile" ? "blue" : "white" }}>Profile</Link >
+                    <Link to="dashboard/ticket" style={{ color: this.props.currentMenu ==="/dashboard/ticket" ? "blue" : "white" }}>Ticket</Link >
+                    <Link to="/" onClick={this.logOuthandler} style={{ color: this.props.currentMenu ==="/dashboard/ticket" ? "blue" : "white" }}>Log Out</Link >
                 </div>
             </div>
 

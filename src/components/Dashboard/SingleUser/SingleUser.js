@@ -1,7 +1,7 @@
 import React , { Component } from "react";
 import { connect } from "react-redux";
 import { userActions } from "../../../actions/users-action";
-import Sidebar from "../../Sidebar/Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 
 class SingleUser extends Component{
     

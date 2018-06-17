@@ -22,12 +22,12 @@ const Home = asyncComponent(
 const Dashboard = asyncComponent(
     () => import ('./components/Dashboard/Dashboard').then(module => module.default)
 )
-const Profile = asyncComponent(
-    () => import ('./components/Profile/Profile').then(module => module.default)
-)
-const Ticket = asyncComponent(
-    () => import ('./components/Ticket/RaiseTicket').then(module => module.default)
-)
+// const Profile = asyncComponent(
+//     () => import ('./components/Profile/Profile').then(module => module.default)
+// )
+// const Ticket = asyncComponent(
+//     () => import ('./components/Ticket/RaiseTicket').then(module => module.default)
+// )
 const SingleUser = asyncComponent(
     () => import ('./components/Dashboard/SingleUser/SingleUser').then(module => module.default)
 )

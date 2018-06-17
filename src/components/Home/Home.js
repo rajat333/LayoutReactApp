@@ -35,7 +35,9 @@ class Home extends React.Component {
        return (
             <div className="Home">         
             <Header />
-            <div className="main-content">
+            <div className="main-content"  
+                 style={{  height: "400px", }}
+            > 
             <Router history={history}>
                 <Switch>
                     <Route path="/login" component={Login}/>
