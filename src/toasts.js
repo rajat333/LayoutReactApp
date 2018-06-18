@@ -25,7 +25,7 @@ export default {
   },
   
   dismiss(msg,options={}){
-    console.log("..in dismiss alll");
+    // console.log("..in dismiss alll");
      return toast.dismiss();
   },
 

@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toast from '../../toasts';
 import {userActions} from '../../actions/users-action';
+import { userConstants } from "../../_constants/user-constant";
 
 class Register extends Component {
     constructor(props) {
@@ -62,30 +63,18 @@ class Register extends Component {
       }
 
       componentWillUnmount(){
-          console.log(".....componenUNMOUNT Reg...");
+        //   console.log(".....componenUNMOUNT Reg...",this.props);
           toast.dismiss("Dismiss all");
-          this.setState({
-            user: {
-                firstName: '',
-                lastName: '',
-                username: '',
-                password: ''
-            },
-            submitted: false,
-            loading: false,
-        })
+          this.props.registerDefaultState();
       }
     componentWillReceiveProps(nextProps){
          this.setState({
               loading :false,
          })       
-        //  console.log("///component recive props",nextProps,this.props);
          if(nextProps.registering){
-
-            setTimeout(function() { 
+          setTimeout(function() { 
                 nextProps.history.push("/login");
              }, 3000);
-            
          }
     }
 
@@ -96,8 +85,8 @@ class Register extends Component {
             <div className="Register">
             <div className='sweet-loading'>
 
-          { this.state.loading ? <img src="https://www.sc.com/id/en/insure/images/pre-loader.gif" alt="loader"/> : 
-                ""
+          { // this.state.loading ? <img src="https://www.sc.com/id/en/insure/images/pre-loader.gif" alt="loader"/> : 
+             //   ""
             }
           </div>
                 <div className="col-md-6 col-md-offset-3">
@@ -185,7 +174,8 @@ const mapDispatchToProps = dispatch => {
     // console.log("...In mapDIspatchToProps....");
     return {
         // different func for performing action
-        registerUser: (userData) => dispatch(userActions.register(userData))
+        registerUser: (userData) => dispatch(userActions.register(userData)),
+        registerDefaultState:()=> dispatch( userActions.defaultRegState()), 
     }
 }
 

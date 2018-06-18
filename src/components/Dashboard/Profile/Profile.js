@@ -36,11 +36,11 @@ class Profile extends Component {
     }
 
     componentWillUnmount(){
-        console.log("...unmount..profile..");
+        // console.log("...unmount..profile..");
     }
     OnSubmitHandler(event) {
         event.preventDefault();
-        console.log("...OnSubmitHandler...", this.state.currentUser.firstName);
+        // console.log("...OnSubmitHandler...", this.state.currentUser.firstName);
         const obj = this.state.currentUser;
         this.setState(
             {submit: true, editable: false, firstName: this.state.currentUser.firstName, lastName: this.state.currentUser.lastName}
@@ -50,7 +50,7 @@ class Profile extends Component {
     }
 
     onEditHandler() {
-        console.log("...onedithandlert....");
+        // console.log("...onedithandlert....");
         this.setState({
             editable: !this.state.editable,
             submit: !this.state.submit
@@ -69,7 +69,7 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("..in component will recieve props..", nextProps);
+        // console.log("..in component will recieve props..", nextProps);
         this.setState({currentUser: nextProps.activeUser})
     }
 
@@ -128,7 +128,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("....state...Profle....", state);
+    // console.log("....state...Profle....", state);
     return {userList: state.users.userList, activeUser: state.users.activeUser};
 }
 
@@ -137,7 +137,7 @@ const mapDispatchToProps = dispatch => {
     return {
         // different func for performing action
         getActiveUser: () => dispatch(userActions.getCurrentUser()),
-        updateUser: (userObj) => dispatch(userActions.updateProfile(userObj)),
+        updateUser: (userObj) => dispatch(userActions.updateProfile(userObj))
     }
 }
 

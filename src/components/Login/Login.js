@@ -60,7 +60,7 @@ class Login extends React.Component {
 
      componentWillUnmount(){
          //disable all login action to default value i.e intial State
-        console.log("...Login..ComponentWillUnMount..");
+        // console.log("...Login..ComponentWillUnMount..");
         this.props.loginDefaultState();    
      }
 

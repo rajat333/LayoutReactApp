@@ -90,6 +90,26 @@ var getCurrentUser= ()=>(dispatch)=>{
     })
 }
 
+var updateProfile = (userObj)=>(dispatch)=>{
+    
+    let userArray = JSON.parse(localStorage.getItem('users'));
+    var foundIndex = userArray.findIndex(x => x.username === userObj.username);
+    userArray[foundIndex].firstName = userObj.firstName;
+    userArray[foundIndex].lastName = userObj.lastName;
+    localStorage.setItem('users',JSON.stringify(userArray));
+    dispatch({
+        type: userConstants.UPDATE_USER_PROFILE,
+        data: userObj
+    })
+}
+
+var defaultRegState= ()=>(dispatch)=>{
+     console.log(".....defaultregstate..");
+     dispatch( {
+        type: userConstants.DEFAULT_REGISTER_STATE
+    });
+}
+
 export const userActions = {
     login,
     logout,
@@ -99,6 +119,8 @@ export const userActions = {
     delete: _delete,
     defaultLoginState,
     getCurrentUser,
+    updateProfile,
+    defaultRegState,
 };
 
 // export default userActions;

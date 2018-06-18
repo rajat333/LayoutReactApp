@@ -6,7 +6,7 @@ import "./Dashboard.css";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import {userService} from '../../services/userService';
 import DashboardMain from './DashboardMain/DashboardMain';
-import { Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 // import {history} from '../../_helpers';
 import Profile from './Profile/Profile';
 import Ticket from './Ticket/RaiseTicket';
@@ -16,7 +16,7 @@ import SingleUser from './SingleUser/SingleUser';
 class Dashboard extends Component {
 
     componentWillMount() {
-        console.log("..In..componentWillMount..",this.props);
+        // console.log("..In..componentWillMount..",this.props);
         if (this.props.location.pathname === '/dashboard' && userService.isUserLogIn()) {
             this
                 .props
@@ -38,16 +38,16 @@ class Dashboard extends Component {
             <div className="Dashboard">
                 <Sidebar currentMenu={currentLocation}/>
                 <div className="main">
-                      <div>
-                            <Switch>
+                    <div>
+                        <Switch>
 
-                                <PrivateRoute exact={ true } path="/dashboard/main" component={DashboardMain}/>
-                                <PrivateRoute path="/dashboard/profile" component={Profile}/>
-                                <PrivateRoute path="/dashboard/ticket" component={Ticket}/>
-                                <PrivateRoute path="/dashboard/main/:id" component={ SingleUser }/>
-                                <Route component={My404NotFound}/>
-                            </Switch>
-                      </div>
+                            <PrivateRoute exact={true} path="/dashboard/main" component={DashboardMain}/>
+                            <PrivateRoute path="/dashboard/profile" component={Profile}/>
+                            <PrivateRoute path="/dashboard/ticket" component={Ticket}/>
+                            <PrivateRoute path="/dashboard/main/:id" component={SingleUser}/>
+                            <Route component={My404NotFound}/>
+                        </Switch>
+                    </div>
                 </div>
             </div>
         )

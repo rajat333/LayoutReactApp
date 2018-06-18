@@ -6,7 +6,7 @@ const intialState = {
   message: ''
 }
 export const registerReducer = (state = intialState, action)=> {
-  // console.log("...in registration reducer....")
+  // console.log("...in registration reducer....",action)
   switch (action.type) {
       case userConstants.REGISTER_REQUEST:
         return { registering: true };
@@ -25,8 +25,18 @@ export const registerReducer = (state = intialState, action)=> {
           error: true,
           message: action.data.message //msg
         };
+
+      case userConstants.DEFAULT_REGISTER_STATE:
+      // console.log(".....default reg reducer....");
+          return{
+             ...state,
+             registering: false,
+              error:'',
+              message: ''
+          }  
     
       default:
+        //  console.log("....default..state...");
          return state
   }
 }
