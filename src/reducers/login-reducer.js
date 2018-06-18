@@ -9,11 +9,11 @@ var intialState = {
 }
 export const loginReducer = (state = intialState, action) => {
     // console.log("..In Login reducer", action);
-   
+
     switch (action.type) {
 
         case userConstants.LOGIN_FAILURE:
-            console.log("..In loginfailure reducer");
+            // console.log("..In loginfailure reducer");
             return {
                 ...state,
                 loggedIn: false,
@@ -21,22 +21,21 @@ export const loginReducer = (state = intialState, action) => {
                 msg: action.msg,
                 submit: true
             }
-            
+
         case userConstants.DEFAULT_LOGIN_STATE:
-            console.log("....default..action...");
-            return{
-                 ...state,
-                 submit:false,
-                 loggedIn:false,
-                 
-            }    
+            // console.log("....default..action...");
+            return {
+                ...state,
+                submit: false,
+                loggedIn: false
+            }
 
         case userConstants.USER_LOGOUT:
             // console.log("...Logout reducer...");
             return {
                 ...state,
                 loggedIn: false,
-                submit:false
+                submit: false
             }
 
         case userConstants.LOGIN_SUCCESS:
@@ -46,7 +45,7 @@ export const loginReducer = (state = intialState, action) => {
                 loggedIn: true, //action.data.error
                 message: action.data.message,
                 msg: action.msg,
-                submit: true,
+                submit: true
             }
 
         default:

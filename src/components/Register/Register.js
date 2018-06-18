@@ -30,7 +30,7 @@ class Register extends Component {
     }
 
     notifySuccess(msg){
-        console.log(".....in..notify..success...",msg);
+        // console.log(".....in..notify..success...",msg);
         toast.success(msg);
     }
 
@@ -46,14 +46,14 @@ class Register extends Component {
     }
 
     handleSubmit(event) {
-        console.log("...In reg submit..");
+        // console.log("...In reg submit..");
         event.preventDefault();
         this.setState({submitted: true , loading: true });
         const {user} = this.state;
         if (user.firstName && user.lastName && user.username && user.password) {
             this.notifySuccess("Success");
             this.props.registerUser(user);
-            console.log("...User register successfully..");
+            // console.log("...User register successfully..");
         }
     }
 

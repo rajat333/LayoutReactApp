@@ -22,12 +22,10 @@ const Home = asyncComponent(
 const Dashboard = asyncComponent(
     () => import ('./components/Dashboard/Dashboard').then(module => module.default)
 )
-// const Profile = asyncComponent(
-//     () => import ('./components/Profile/Profile').then(module => module.default)
-// )
-// const Ticket = asyncComponent(
-//     () => import ('./components/Ticket/RaiseTicket').then(module => module.default)
-// )
+// const Profile = asyncComponent(     () => import
+// ('./components/Profile/Profile').then(module => module.default) ) const
+// Ticket = asyncComponent(     () => import
+// ('./components/Ticket/RaiseTicket').then(module => module.default) )
 const SingleUser = asyncComponent(
     () => import ('./components/Dashboard/SingleUser/SingleUser').then(module => module.default)
 )
@@ -61,8 +59,8 @@ class App extends Component {
                 <Router history={history}>
                     <div>
                         <Switch>
-                            <Route exact path="/" component={Home}/>
-                            <PrivateRoute path="/dashboard" component={ Dashboard } />
+                            <Route exact="exact" path="/" component={Home}/>
+                            <PrivateRoute path="/dashboard" component={Dashboard}/>
                             <Route component={Home}/>
                         </Switch>
 

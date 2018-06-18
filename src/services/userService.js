@@ -56,7 +56,7 @@ function login(userCredits){
                returnObj.message = "Successfully Login User";              
            }
            else{
-               console.log("....Cannot LOGIN....");
+            //    console.log("....Cannot LOGIN....");
                returnObj.error = true;
                returnObj.message = "Please check your creditionals";
            }
