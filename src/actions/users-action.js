@@ -75,6 +75,21 @@ var defaultLoginState = ()=>(dispatch)=>{
          type: userConstants.DEFAULT_LOGIN_STATE,
     });
 }
+
+var getCurrentUser= ()=>(dispatch)=>{
+    var userObj = JSON.parse(localStorage.getItem('activeUser'));
+    var userArray = JSON.parse(localStorage.getItem('users'));
+    var result = userArray.filter(element => {
+         
+        return ((userObj.username === element.username) && (userObj.password === element.password));
+    })
+    console.log("...result...is...",result);
+    dispatch({
+        type: userConstants.GET_USER_DATA,
+        data: result[0],
+    })
+}
+
 export const userActions = {
     login,
     logout,
@@ -83,6 +98,7 @@ export const userActions = {
     getUserById,
     delete: _delete,
     defaultLoginState,
+    getCurrentUser,
 };
 
 // export default userActions;

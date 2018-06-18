@@ -6,8 +6,8 @@ import "./Dashboard.css";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import {userService} from '../../services/userService';
 import DashboardMain from './DashboardMain/DashboardMain';
-import {Router, Route, Switch} from 'react-router-dom';
-import {history} from '../../_helpers';
+import { Route, Switch} from 'react-router-dom';
+// import {history} from '../../_helpers';
 import Profile from './Profile/Profile';
 import Ticket from './Ticket/RaiseTicket';
 import My404NotFound from "../404NotFound/My404NotFound";
@@ -15,9 +15,6 @@ import SingleUser from './SingleUser/SingleUser';
 
 class Dashboard extends Component {
 
-    constructor(props) {
-        super(props);
-    }
     componentWillMount() {
         console.log("..In..componentWillMount..",this.props);
         if (this.props.location.pathname === '/dashboard' && userService.isUserLogIn()) {
@@ -30,7 +27,7 @@ class Dashboard extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("..in component will recieve Dashboard",nextProps);
+        // console.log("..in component will recieve Dashboard",nextProps);
         // props..",this.props,nextProps);
     }
 

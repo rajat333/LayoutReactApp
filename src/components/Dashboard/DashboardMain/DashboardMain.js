@@ -4,8 +4,6 @@ import { Link  } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import { userActions } from "../../../actions/users-action";
 // import "./DashboardMain.css";
-import SingleUser from '../SingleUser/SingleUser';
-import PrivateRoute from "../../PrivateRoute/PrivateRoute";
 
 class DashboardMain extends Component{
 
@@ -76,7 +74,7 @@ class DashboardMain extends Component{
                {
                    this.state.listOfData.map( (eachElement,index) => 
                       <tr key={ index }>
-                      <td><Link to={ '/dashboard'+'/main/'+index} key={index}>{ eachElement.firstName }</Link></td>
+                      <td><Link to={ '/dashboard/main/'+index} key={index}>{ eachElement.firstName }</Link></td>
                       <td>{ eachElement.lastName }</td>
                       <td>{ eachElement.username }</td>
                     

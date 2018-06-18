@@ -3,7 +3,9 @@ import { userConstants } from '../_constants/user-constant';
 const intialState = {
   userList: [],
   error:'',
-  selectedUser: ''
+  selectedUser: '',
+  activeUser:{},
+  profileUpdate: false,
 }
 export const usersReducer = (state = intialState, action)=> {
 
@@ -34,6 +36,19 @@ export const usersReducer = (state = intialState, action)=> {
             userList: action.userList, 
        }
      
+    case userConstants.GET_USER_DATA:
+    console.log("...getuserdata red...");
+         return{
+             ...state,
+             activeUser: action.data
+         }   
+    case userConstants.UPDATE_USER_PROFILE:
+         console.log("...........")
+         return{
+           ...state,
+            profileUpdate: true,
+         }
+
       default:
         //  console.log("...In default");
          return state

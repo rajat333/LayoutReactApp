@@ -6,7 +6,6 @@ import {Router, Route, Switch} from 'react-router-dom';
 import {history} from '../../_helpers';
 import Footer from "../Footer/Footer";
 import asyncComponent from "../../AsyncComponent";
-import My404Component from "../404NotFound/My404NotFound";
 
 const Login = asyncComponent(
     () => import ('../Login/Login').then(module => module.default)

@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import $ from 'jquery';
-import { css } from 'glamor';
+// import $ from 'jquery';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toast from '../../toasts';
-import Header from "../Header/Header";
 import {userActions} from '../../actions/users-action';
 
 class Register extends Component {
@@ -85,9 +83,8 @@ class Register extends Component {
          if(nextProps.registering){
 
             setTimeout(function() { 
-            //    console.log("...Transfering to login state");     
                 nextProps.history.push("/login");
-             }.bind(this), 3000);
+             }, 3000);
             
          }
     }
@@ -99,7 +96,7 @@ class Register extends Component {
             <div className="Register">
             <div className='sweet-loading'>
 
-          { this.state.loading ? <img src="https://www.sc.com/id/en/insure/images/pre-loader.gif" /> : 
+          { this.state.loading ? <img src="https://www.sc.com/id/en/insure/images/pre-loader.gif" alt="loader"/> : 
                 ""
             }
           </div>

@@ -5,7 +5,6 @@ import './App.css';
 import asyncComponent from "./AsyncComponent";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import userService from "./services/userService";
-import SingleUser from './components/Dashboard/SingleUser/SingleUser';
 // lazy loading import Home from "./components/Home/Home"; import Login from
 // "./components/Login/Login"; import ContactUs from
 // "./components/ContactUs/ContactUs"; import AboutUs from
