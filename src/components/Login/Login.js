@@ -6,9 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import toast from '../../toasts';
 import {userActions} from "../../actions/users-action";
 // import { userConstants } from '../../actions/users-action';
-import Header from '../Header/Header';
-import { stat } from 'fs';
-
 
 class Login extends React.Component {
     constructor(props) {

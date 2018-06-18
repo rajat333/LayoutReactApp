@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {  Link} from 'react-router-dom'
 // import Background from "../../../public/images/frontbg.jpg";
 var sectionStyle = {
     width: "100%",

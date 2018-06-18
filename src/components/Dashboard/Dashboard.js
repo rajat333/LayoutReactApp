@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Link} from "react-router-dom";
-import Pagination from "react-js-pagination";
 import Sidebar from "./Sidebar/Sidebar";
 import {userActions} from "../../actions/users-action";
 import "./Dashboard.css";
-import SingleUser from './SingleUser/SingleUser';
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import {userService} from '../../services/userService';
 import DashboardMain from './DashboardMain/DashboardMain';
@@ -14,6 +11,7 @@ import {history} from '../../_helpers';
 import Profile from './Profile/Profile';
 import Ticket from './Ticket/RaiseTicket';
 import My404NotFound from "../404NotFound/My404NotFound";
+import SingleUser from './SingleUser/SingleUser';
 
 class Dashboard extends Component {
 
@@ -21,6 +19,7 @@ class Dashboard extends Component {
         super(props);
     }
     componentWillMount() {
+        console.log("..In..componentWillMount..",this.props);
         if (this.props.location.pathname === '/dashboard' && userService.isUserLogIn()) {
             this
                 .props
@@ -31,7 +30,7 @@ class Dashboard extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // console.log("..in component will recieve Dashboard
+        console.log("..in component will recieve Dashboard",nextProps);
         // props..",this.props,nextProps);
     }
 
@@ -42,20 +41,16 @@ class Dashboard extends Component {
             <div className="Dashboard">
                 <Sidebar currentMenu={currentLocation}/>
                 <div className="main">
-                    <Router history={history}>
-                        <div>
+                      <div>
                             <Switch>
 
-                                <PrivateRoute path="/dashboard/main" component={DashboardMain}/>
+                                <PrivateRoute exact={ true } path="/dashboard/main" component={DashboardMain}/>
                                 <PrivateRoute path="/dashboard/profile" component={Profile}/>
                                 <PrivateRoute path="/dashboard/ticket" component={Ticket}/>
+                                <PrivateRoute path="/dashboard/main/:id" component={ SingleUser }/>
                                 <Route component={My404NotFound}/>
                             </Switch>
-
-                        </div>
-
-                    </Router>
-
+                      </div>
                 </div>
             </div>
         )

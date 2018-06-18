@@ -23,7 +23,7 @@ class DashboardMain extends Component{
     }
 
     componentWillMount(){
-        console.log("...Calling getallregisateruser...");
+        // console.log("...Calling getallregisateruser...");
         this.props.getRegisteredUsers();
     }
 
@@ -76,7 +76,7 @@ class DashboardMain extends Component{
                {
                    this.state.listOfData.map( (eachElement,index) => 
                       <tr key={ index }>
-                      <td><Link to={ '/dashboard'+'/'+index} key={index}>{ eachElement.firstName }</Link></td>
+                      <td><Link to={ '/dashboard'+'/main/'+index} key={index}>{ eachElement.firstName }</Link></td>
                       <td>{ eachElement.lastName }</td>
                       <td>{ eachElement.username }</td>
                     
@@ -100,7 +100,7 @@ class DashboardMain extends Component{
                />
            </div>
             </div>
-          
+                           
             </div>
         )
     }

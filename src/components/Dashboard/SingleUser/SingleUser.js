@@ -25,7 +25,7 @@ class SingleUser extends Component{
     render(){   
     return (
       <div className="SingleUser">
-      <Sidebar/>
+        <Sidebar />
        <h1>Clicked User Detail Will be Shown Here</h1> 
         { this.props.isUserSelected ? (
            <div className="selectedUser">

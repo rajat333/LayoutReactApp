@@ -3,9 +3,9 @@ import {Router, Route, Switch} from 'react-router-dom';
 import {history} from './_helpers';
 import './App.css';
 import asyncComponent from "./AsyncComponent";
-import My404Component from "./components/404NotFound/My404NotFound";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import userService from "./services/userService";
+import SingleUser from './components/Dashboard/SingleUser/SingleUser';
 // lazy loading import Home from "./components/Home/Home"; import Login from
 // "./components/Login/Login"; import ContactUs from
 // "./components/ContactUs/ContactUs"; import AboutUs from
@@ -14,20 +14,13 @@ import userService from "./services/userService";
 // "./components/Dashboard/Dashboard"; import Profile from
 // './components/Profile/Profile'; import Ticket from
 // './components/Ticket/RaiseTicket';
-import LogOut from './components/LogOut/LogOut';
+// import LogOut from './components/LogOut/LogOut';
 // import SingleUser from './components/Dashboard/SingleUser/SingleUser';
 const Home = asyncComponent(
     () => import ('./components/Home/Home').then(module => module.default)
 )
 const Dashboard = asyncComponent(
     () => import ('./components/Dashboard/Dashboard').then(module => module.default)
-)
-// const Profile = asyncComponent(     () => import
-// ('./components/Profile/Profile').then(module => module.default) ) const
-// Ticket = asyncComponent(     () => import
-// ('./components/Ticket/RaiseTicket').then(module => module.default) )
-const SingleUser = asyncComponent(
-    () => import ('./components/Dashboard/SingleUser/SingleUser').then(module => module.default)
 )
 
 class App extends Component {
@@ -59,7 +52,7 @@ class App extends Component {
                 <Router history={history}>
                     <div>
                         <Switch>
-                            <Route exact="exact" path="/" component={Home}/>
+                            <Route exact={ true } path="/" component={Home}/>
                             <PrivateRoute path="/dashboard" component={Dashboard}/>
                             <Route component={Home}/>
                         </Switch>
