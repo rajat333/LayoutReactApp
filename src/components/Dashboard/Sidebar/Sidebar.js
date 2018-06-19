@@ -63,7 +63,7 @@ class Sidebar extends Component {
                         to="/"
                         onClick={this.logOuthandler}
                         style={{
-                            color: this.props.currentMenu === "/dashboard/ticket"
+                            color: menuPath === "/"
                                 ? "blue"
                                 : "white"
                         }}>Log Out</Link >
