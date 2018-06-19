@@ -3,6 +3,7 @@ import {Link  } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import  CryptoJS from "crypto-js";
 import toast from '../../toasts';
 import {userActions} from "../../actions/users-action";
 // import { userConstants } from '../../actions/users-action';
@@ -81,6 +82,12 @@ class Login extends React.Component {
          this.refs.myInput.focus(); 
         if (username && password) {
             // dispatch(userActions.login(username, password));
+            var data = {username: username, password: password ,nonce: new Date().getTime().toString() }
+            var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data),'secret key 123');
+            console.log("...encryption....",ciphertext.toString());
+            var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
+            var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+            console.log("...decryption....",decryptedData);
             this.props
                 .loginUser({username: username, password: password});
         }
