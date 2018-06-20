@@ -48,11 +48,23 @@ export const loginReducer = (state = intialState, action) => {
                 submit: true
             }
 
+        case userConstants.CHANGE_FORM_STATE:
+             return{
+                  ...state,
+                  loggedIn: false,
+                  message: "",
+                  submit: false,
+                  msg: ""
+             }    
+
         default:
             // console.log("..IndefaultLoginreducer");
             return {
                 ...state,
-                loggedIn: userService.isUserLogIn()
+                loggedIn: userService.isUserLogIn(),
+                submit: false,
+                message: '',
+                msg: ''
             };
 
     }

@@ -127,6 +127,13 @@ var defaultRegState= ()=>(dispatch)=>{
     });
 }
 
+var changeFormSubmitValue= ()=> (dispatch)=>{
+
+    console.log("....changeFormSubmitValue....");
+    dispatch({
+         type: userConstants.CHANGE_FORM_STATE,
+    })
+}
 export const userActions = {
     login,
     logout,
@@ -138,6 +145,7 @@ export const userActions = {
     getCurrentUser,
     updateProfile,
     defaultRegState,
+    changeFormSubmitValue,
 };
 
 // export default userActions;

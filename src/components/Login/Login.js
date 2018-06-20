@@ -30,31 +30,43 @@ class Login extends React.Component {
     }
 
     notifyError(msg){
-         toast.error(msg); 
+        toast.error(msg);   
     }
     componentWillMount(){
+        // console.log("...comp will mount....");
          if(this.props.isUserLogin){ 
            this.props.history.push("/dashboard");
         }
     }
 
     componentWillReceiveProps(nextProps){
-        console.log("..Login nextprops..",nextProps);
+        // console.log("..Login nextprops..",nextProps);
         if(nextProps.isUserLogin){
             //calling toast for login success
             this.notifySuccess("Login Successful !");
             setTimeout(() => {
                 nextProps.history.push("/dashboard"); 
             }, 1000);
-         }
-         if(nextProps.isFormSubumit){
-            console.log("...isformsubmit...");
-         }
+        }
+
+        if(nextProps.isFormSubumit){
+            // console.log("....informsubmit...");
+            var that = this;
+            setTimeout(() => {
+                that.props.changeFormSubmitValue();
+                that.setState({  
+                                submitted: false,
+                             }); 
+            }, 2000);
+             
+        }
+
+         toast.dismiss("dismiss");
     } 
 
      componentWillUnmount(){
          //disable all login action to default value i.e intial State
-        console.log("...Login..ComponentWillUnMount..");
+        // console.log("...Login..ComponentWillUnMount..");
         this.props.loginDefaultState();    
      }
 
@@ -62,9 +74,12 @@ class Login extends React.Component {
         // console.log("..inrenderSuccesToast...");
     //  toast.warn("Registration Successfull !");
     }
-    handleChange(e) {
+    handleChange(e) { 
+        toast.dismiss("dismiss");
+        e.preventDefault();
         const {name, value} = e.target;
         this.setState({[name]: value});
+        
     }
 
     handleSubmit(e) {
@@ -154,6 +169,7 @@ const mapDispatchToProps = dispatch => {
         // different func for performing action
         loginUser: (userCredits) => dispatch(userActions.login(userCredits)),
         loginDefaultState: ()=> dispatch(userActions.defaultLoginState()),
+        changeFormSubmitValue: ()=> dispatch( userActions.changeFormSubmitValue() ),
     }
 }
 
