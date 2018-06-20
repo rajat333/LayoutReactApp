@@ -71,7 +71,7 @@ const mapStateToProps = (state)=>{
 }
 
 const mapDispatchToProps = (dispatch)=>{
-     console.log("...In dispatch..");
+    //  console.log("...In dispatch..");
      return {
 
      }

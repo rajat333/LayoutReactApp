@@ -5,26 +5,16 @@ function userRegister(userData) {
         error: '',
         message: ''
     }
-    // var data = {username: username, password: password ,nonce: new
-    // Date().getTime().toString() } var ciphertext =
-    // CryptoJS.AES.encrypt(JSON.stringify(data),'secret key 123');
-    // console.log("...encryption....",ciphertext.toString());
+   
     if (localStorage.getItem('users')) {
-        // console.log(".....inif./...");
-        var bytes = CryptoJS
-            .AES
-            .decrypt(localStorage.getItem('users'), 'secret key 123');
-        // console.log("....bytes....");
+        var bytes = CryptoJS.AES.decrypt(localStorage.getItem('users'), 'secret key 123');
         var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     } else 
         var decryptedData = [];
-    
-    // console.log("...decryption....",decryptedData);  calling api for user
-    // register use here localstorage
+
     var userArray = localStorage.getItem("users")
         ? decryptedData
         : [];
-    //  console.log(".....userArray....",userArray);
     if (userArray.length > 0) {
         var found = userArray.some(function (element) {
             return element.username === userData.username;
@@ -34,23 +24,16 @@ function userRegister(userData) {
             var ciphertext = CryptoJS
                 .AES
                 .encrypt(JSON.stringify(userArray), 'secret key 123');
-            // console.log("...encryption....",ciphertext.toString());
-            // console.log("......in..push..usetrarray...",userArray);
             localStorage.setItem("users", ciphertext.toString());
             returnObj.error = false;
             returnObj.message = "Successfully Register User";
         } else {
-            //    console.log("....Cannot register....");
             returnObj.error = true;
             returnObj.message = "User Already Exist. Please try again with different Username";
         }
     } else {
         userArray.push(userData);
-        var ciphertext = CryptoJS
-            .AES
-            .encrypt(JSON.stringify(userArray), 'secret key 123');
-        // console.log("...encryption....",ciphertext.toString());
-        // console.log("......in..push..usetrarray...",userArray);
+        var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(userArray), 'secret key 123');
         localStorage.setItem("users", ciphertext.toString());
         //localStorage.setItem("users",JSON.stringify(userArray));
         returnObj.error = false;
@@ -127,18 +110,14 @@ function getUserById(id) {
         var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     }
     var userData = decryptedData || [];
-    // console.log("...userData..id..",userData,id);
     const result = userData[id];
-    // console.log("..result..is..",result);
-    return {selectedUser: result, userList: userData};
+     return {selectedUser: result, userList: userData};
 }
 
 function isUserLogIn() {
 
     var user = localStorage.getItem("activeUser")
         ? localStorage.getItem("activeUser") : "";
-    
-    console.log("......isUserLogin....",user);    
     if (user.length === 0) {
         return false;
     } else {

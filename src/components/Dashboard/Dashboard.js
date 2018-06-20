@@ -16,14 +16,14 @@ import SingleUser from './SingleUser/SingleUser';
 class Dashboard extends Component {
 
     componentWillMount() {
-        console.log("..In..componentWillMount..",this.props);
+        // console.log("..In..componentWillMount..",this.props);
         if (this.props.location.pathname === '/dashboard' && userService.isUserLogIn()) {
             this
                 .props
                 .history
                 .push("/dashboard/main");
         }else{
-            console.log("..In..componentWillMount..dashboard...",this.props);
+            // console.log("..In..componentWillMount..dashboard...",this.props);
             this.props.history.push("/login")
         }
         // this.props.getRegisteredUsers();

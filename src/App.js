@@ -12,9 +12,9 @@ import userService from "./services/userService";
 // './components/Register/Register'; import Dashboard from
 // "./components/Dashboard/Dashboard"; import Profile from
 // './components/Profile/Profile'; import Ticket from
-// './components/Ticket/RaiseTicket';
-// import LogOut from './components/LogOut/LogOut';
-// import SingleUser from './components/Dashboard/SingleUser/SingleUser';
+// './components/Ticket/RaiseTicket'; import LogOut from
+// './components/LogOut/LogOut'; import SingleUser from
+// './components/Dashboard/SingleUser/SingleUser';
 const Home = asyncComponent(
     () => import ('./components/Home/Home').then(module => module.default)
 )
@@ -51,7 +51,7 @@ class App extends Component {
                 <Router history={history}>
                     <div>
                         <Switch>
-                            <Route exact={ true } path="/" component={Home}/>
+                            <Route exact={true} path="/" component={Home}/>
                             <PrivateRoute path="/dashboard" component={Dashboard}/>
                             <Route component={Home}/>
                         </Switch>
