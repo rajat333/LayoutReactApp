@@ -136,9 +136,9 @@ function getUserById(id) {
 function isUserLogIn() {
 
     var user = localStorage.getItem("activeUser")
-        ? localStorage.getItem("activeUser") || {} : {};
+        ? localStorage.getItem("activeUser") : "";
     
-    // console.log("......isUserLogin....",user);    
+    console.log("......isUserLogin....",user);    
     if (user.length === 0) {
         return false;
     } else {

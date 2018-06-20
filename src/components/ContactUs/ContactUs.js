@@ -2,19 +2,27 @@ import React , { Component } from 'react';
 import { connect } from "react-redux";
 
 class ContactUs extends Component{
- 
-  componentWillMount(){
-    if(this.props.isUserLogin){
-        this.props.history.push("/dashboard");
-     }
- 
+  
+    constructor(props){
+        super(props);
+        this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    }
+
+    componentWillMount(){
+      if(this.props.isUserLogin){
+         this.props.history.push("/dashboard");
+      }
+    }
+
+    onSubmitHandler(event){
+      event.preventDefault();
     }
     render(){
         return(
             <div className="Contact col-md-6 col-md-offset-3">
              <h1>Contact Us</h1>
              <br/><br/><br/>
-             <form className="form-horizontal" action="/action_page.php">
+             <form className="form-horizontal" onSubmit={ this.onSubmitHandler }>
              <div className="form-group">
              <label className="control-label col-sm-2" htmlFor="name">Name</label>
              <div className="col-sm-4 col-sm-offset-2">
