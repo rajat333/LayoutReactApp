@@ -1,4 +1,5 @@
 // import { history } from '../_helpers';
+import CryptoJS from "crypto-js";
 import userConstants from "../_constants/user-constant";
 import userService from "../services/userService";
 
@@ -77,13 +78,21 @@ var defaultLoginState = ()=>(dispatch)=>{
 }
 
 var getCurrentUser= ()=>(dispatch)=>{
-    var userObj = JSON.parse(localStorage.getItem('activeUser'));
-    var userArray = JSON.parse(localStorage.getItem('users'));
+    
+    if(localStorage.getItem('users')){
+        var bytes = CryptoJS.AES.decrypt(localStorage.getItem('users'), 'secret key 123');
+        var decryptedUsersData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    }
+    if(localStorage.getItem('activeUser')){
+        var bytes = CryptoJS.AES.decrypt(localStorage.getItem('activeUser'), 'secret key 123');
+        var activeUser = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    }
+    var userObj = activeUser;
+    var userArray = decryptedUsersData;
     var result = userArray.filter(element => {
-         
-        return ((userObj.username === element.username) && (userObj.password === element.password));
+          return ((userObj.username === element.username) && (userObj.password === element.password));
     })
-    console.log("...result...is...",result);
+    // console.log("...result...is...",result);
     dispatch({
         type: userConstants.GET_USER_DATA,
         data: result[0],
@@ -92,11 +101,19 @@ var getCurrentUser= ()=>(dispatch)=>{
 
 var updateProfile = (userObj)=>(dispatch)=>{
     
-    let userArray = JSON.parse(localStorage.getItem('users'));
+    if(localStorage.getItem('users')){
+        var bytes = CryptoJS.AES.decrypt(localStorage.getItem('users'), 'secret key 123');
+        var decryptedUsersData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    }
+    // console.log("......decryptedUsersData......",decryptedUsersData)
+    let userArray = decryptedUsersData ? decryptedUsersData : [] ;
+    // console.log("......userarray......",userArray);
     var foundIndex = userArray.findIndex(x => x.username === userObj.username);
     userArray[foundIndex].firstName = userObj.firstName;
     userArray[foundIndex].lastName = userObj.lastName;
-    localStorage.setItem('users',JSON.stringify(userArray));
+    
+    var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(userArray), 'secret key 123');
+    localStorage.setItem('users',ciphertext.toString());
     dispatch({
         type: userConstants.UPDATE_USER_PROFILE,
         data: userObj
