@@ -17,32 +17,23 @@ class Login extends React.Component {
             password: '',
             submitted: false
         };
-        // console.log("...this props///", this.props);
-        // var m = this.props.login.loggedIn ? true : false; 
-        // if(m){
-        //     console.log("....ififif");
-        //     this.props.history.push("/dashboard")
-        // }
+     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderSuccessToast = this.renderSuccessToast.bind(this);
         this.notifySuccess = this.notifySuccess.bind(this);
         this.notifyError = this.notifyError.bind(this);
-        
     }
 
     notifySuccess(msg){
-        // console.log(".....in..notify..login success...",msg);
         toast.success(msg);
     }
-    
+
     notifyError(msg){
-        // console.log("...error login fail");
-        toast.error(msg);
+         toast.error(msg); 
     }
     componentWillMount(){
-        // console.log("..In Component Will Mount login...");
-        if(this.props.isUserLogin){ 
+         if(this.props.isUserLogin){ 
            this.props.history.push("/dashboard");
         }
     }
@@ -55,13 +46,15 @@ class Login extends React.Component {
             setTimeout(() => {
                 nextProps.history.push("/dashboard"); 
             }, 1000);
-           
-        }
+         }
+         if(nextProps.isFormSubumit){
+            console.log("...isformsubmit...");
+         }
     } 
 
      componentWillUnmount(){
          //disable all login action to default value i.e intial State
-        // console.log("...Login..ComponentWillUnMount..");
+        console.log("...Login..ComponentWillUnMount..");
         this.props.loginDefaultState();    
      }
 
@@ -82,13 +75,7 @@ class Login extends React.Component {
          this.refs.myInput.focus(); 
         if (username && password) {
             // dispatch(userActions.login(username, password));
-            var data = {username: username, password: password ,nonce: new Date().getTime().toString() }
-            var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data),'secret key 123');
-            console.log("...encryption....",ciphertext.toString());
-            var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
-            var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-            console.log("...decryption....",decryptedData);
-            this.props
+           this.props
                 .loginUser({username: username, password: password});
         }
     }
@@ -141,7 +128,7 @@ class Login extends React.Component {
                                 onChange={this.handleChange}/> {submitted && !password && <div className="help-block">Password is required</div>}
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn btn-primary" disabled={ this.state.submitted }>Login</button>
                             <Link to="/register" className="btn btn-link">Register</Link>
                         </div>
                     </form>
