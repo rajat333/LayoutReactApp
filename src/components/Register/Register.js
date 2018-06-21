@@ -68,11 +68,10 @@ class Register extends Component {
           this.props.registerDefaultState();
       }
     componentWillReceiveProps(nextProps){
-         this.setState({
-              loading :false,
-         })       
+        // console.log(".....componentWillReceiveProps Reg...",nextProps);    
          if(nextProps.registering){
           setTimeout(function() { 
+            nextProps.registerDefaultState();
                 nextProps.history.push("/login");
              }, 3000);
          }
