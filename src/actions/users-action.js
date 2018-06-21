@@ -121,7 +121,7 @@ var updateProfile = (userObj)=>(dispatch)=>{
 }
 
 var defaultRegState= ()=>(dispatch)=>{
-     console.log(".....defaultregstate..");
+    //  console.log(".....defaultregstate..");
      dispatch( {
         type: userConstants.DEFAULT_REGISTER_STATE
     });
@@ -129,7 +129,7 @@ var defaultRegState= ()=>(dispatch)=>{
 
 var changeFormSubmitValue= ()=> (dispatch)=>{
 
-    console.log("....changeFormSubmitValue....");
+    // console.log("....changeFormSubmitValue....");
     dispatch({
          type: userConstants.CHANGE_FORM_STATE,
     })
