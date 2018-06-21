@@ -152,7 +152,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("....state..person..login....", state);
+    // console.log("....state..person..login....", state);
     return {
         
         isUserRegister: state.registration.registering,
@@ -162,8 +162,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => {
-    // console.log("...In mapDIspatchToProps....");
-    return {
+     return {
         // different func for performing action
         loginUser: (userCredits) => dispatch(userActions.login(userCredits)),
         loginDefaultState: ()=> dispatch(userActions.defaultLoginState()),
