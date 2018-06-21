@@ -36,12 +36,11 @@ class Profile extends Component {
     }
 
     componentWillUnmount(){
-        // console.log("...unmount..profile..");
     }
+
     OnSubmitHandler(event) {
         event.preventDefault();
-        // console.log("...OnSubmitHandler...", this.state.currentUser.firstName);
-        const obj = this.state.currentUser;
+         const obj = this.state.currentUser;
         this.setState(
             {submit: true, editable: false, firstName: this.state.currentUser.firstName, lastName: this.state.currentUser.lastName}
         );
@@ -50,7 +49,6 @@ class Profile extends Component {
     }
 
     onEditHandler() {
-        // console.log("...onedithandlert....");
         this.setState({
             editable: !this.state.editable,
             submit: !this.state.submit
@@ -59,7 +57,6 @@ class Profile extends Component {
 
     OnInputHandler(event) {
         event.preventDefault();
-        // console.log("..OnInputHandler..", event.target, event.target.value);
         this.setState({
             currentUser: {
                 ...this.state.currentUser,
@@ -69,8 +66,7 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // console.log("..in component will recieve props..", nextProps);
-        this.setState({currentUser: nextProps.activeUser})
+         this.setState({currentUser: nextProps.activeUser})
     }
 
     render() {

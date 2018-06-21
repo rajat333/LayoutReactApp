@@ -28,18 +28,8 @@ class App extends Component {
         super(props);
         // documentation https://github.com/ReactTraining/history
         history.listen((location, action) => {
-            // clear alert on location change dispatch(alertActions.clear());
-            console.log(
-                "...location...action...",
-                location,
-                action,
-                userService.isUserLogIn()
-            );
+            // console.log("...location...action...",location,action,userService.isUserLogIn());
         });
-    }
-
-    componentWillMount() {
-        // console.log("..component will mount...");
     }
 
     componentWillReceiveProps(nextProps) {

@@ -9,10 +9,8 @@ const intialState = {
 }
 export const usersReducer = (state = intialState, action) => {
 
-    // console.log("...in users reducer....",action);
     switch (action.type) {
         case userConstants.GETALL_SUCCESS:
-            //  console.log("...In case1");
             return {
                 ...state,
                 userList: action.userList,
@@ -20,7 +18,6 @@ export const usersReducer = (state = intialState, action) => {
                 selectedUser: ''
             };
         case userConstants.GETALL_FAILURE:
-            // console.log("...In case2");
             return {
                 ...state,
                 userList: [],
@@ -29,7 +26,6 @@ export const usersReducer = (state = intialState, action) => {
             };
 
         case userConstants.GET_USER_BY_ID:
-            //  console.log("...In case3...getusr by id");
             return {
                 ...state,
                 selectedUser: action.selectedUser,
@@ -37,13 +33,11 @@ export const usersReducer = (state = intialState, action) => {
             }
 
         case userConstants.GET_USER_DATA:
-            // console.log("...getuserdata red...");
             return {
                 ...state,
                 activeUser: action.data
             }
-        case userConstants.UPDATE_USER_PROFILE:
-            //  console.log("...........")
+        case userConstants.UPDATE_USER_PROFILE:  
             return {
                 ...state,
                 profileUpdate: true,
@@ -51,7 +45,6 @@ export const usersReducer = (state = intialState, action) => {
             }
 
         default:
-            //  console.log("...In default");
             return state
     }
 }

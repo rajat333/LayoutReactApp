@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 // import $ from 'jquery';
-import { ToastContainer } from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toast from '../../toasts';
 import {userActions} from '../../actions/users-action';
-import { userConstants } from "../../_constants/user-constant";
+import {userConstants} from "../../_constants/user-constant";
 
 class Register extends Component {
     constructor(props) {
@@ -20,16 +20,21 @@ class Register extends Component {
                 password: ''
             },
             submitted: false,
-            loading: false,
+            loading: false
         };
         // this.myRef = React.createRef;
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.notifySuccess = this.notifySuccess.bind(this);
+        this.handleChange = this
+            .handleChange
+            .bind(this);
+        this.handleSubmit = this
+            .handleSubmit
+            .bind(this);
+        this.notifySuccess = this
+            .notifySuccess
+            .bind(this);
     }
 
-    notifySuccess(msg){
-        // console.log(".....in..notify..success...",msg);
+    notifySuccess(msg) {
         toast.success(msg);
     }
 
@@ -37,44 +42,50 @@ class Register extends Component {
         const {name, value} = event.target;
         const {user} = this.state;
         this.setState({
-             user:{
-                 ...user,
-                 [name] :value,
-             }
+            user: {
+                ...user,
+                [name]: value
+            }
         });
     }
 
     handleSubmit(event) {
-        // console.log("...In reg submit..");
         event.preventDefault();
-        this.setState({submitted: true , loading: true });
+        this.setState({submitted: true, loading: true});
         const {user} = this.state;
         if (user.firstName && user.lastName && user.username && user.password) {
             this.notifySuccess("Success");
-            this.props.registerUser(user);
+            this
+                .props
+                .registerUser(user);
             // console.log("...User register successfully..");
         }
     }
 
-    componentWillMount(){
-        if(this.props.isUserLogin){
-            this.props.history.push("/dashboard");
-         }
-      }
+    componentWillMount() {
+        if (this.props.isUserLogin) {
+            this
+                .props
+                .history
+                .push("/dashboard");
+        }
+    }
 
-      componentWillUnmount(){
-        //   console.log(".....componenUNMOUNT Reg...",this.props);
-          toast.dismiss("Dismiss all");
-          this.props.registerDefaultState();
-      }
-    componentWillReceiveProps(nextProps){
-        // console.log(".....componentWillReceiveProps Reg...",nextProps);    
-         if(nextProps.registering){
-          setTimeout(function() { 
-            nextProps.registerDefaultState();
-                nextProps.history.push("/login");
-             }, 3000);
-         }
+    componentWillUnmount() {
+        toast.dismiss("Dismiss all");
+        this
+            .props
+            .registerDefaultState();
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.registering) {
+            setTimeout(function () {
+                nextProps.registerDefaultState();
+                nextProps
+                    .history
+                    .push("/login");
+            }, 3000);
+        }
     }
 
     render() {
@@ -82,18 +93,29 @@ class Register extends Component {
         const {user, submitted} = this.state;
         return (
             <div className="Register">
-            <div className='sweet-loading'>
+                <div className='sweet-loading'>
 
-          { // this.state.loading ? <img src="https://www.sc.com/id/en/insure/images/pre-loader.gif" alt="loader"/> : 
-             //   ""
-            }
-          </div>
+                    { // this.state.loading ? <img src="https://www.sc.com/id/en/insure/images/pre-loader.gif" alt="loader"/> :
+                        //   ""
+                    }
+                </div>
                 <div className="col-md-6 col-md-offset-3">
-               { /* React toastify for toast container */  }
-               {this.props.registering? <ToastContainer   /> : null } 
-                    <h2>Register</h2> 
-                    {this.props.registering ? <span style={{ color:"red" }}>Registration Sucessful! You will be redirected to Login...</span> : "" }
-                    <form name="form"  onSubmit={this.handleSubmit}>
+                    {/* React toastify for toast container */}
+                    {
+                        this.props.registering
+                            ? <ToastContainer/>
+                            : null
+                    }
+                    <h2>Register</h2>
+                    {
+                        this.props.registering
+                            ? <span
+                                    style={{
+                                        color: "red"
+                                    }}>Registration Sucessful! You will be redirected to Login...</span>
+                            : ""
+                    }
+                    <form name="form" onSubmit={this.handleSubmit}>
                         <div
                             className={'form-group' + (
                                 submitted && !user.firstName
@@ -109,13 +131,18 @@ class Register extends Component {
                                 value={user.firstName}
                                 onChange={this.handleChange}/> {submitted && !user.firstName && <div className="help-block">First Name is required</div>}
                         </div>
-                        <div className={'form-group' + (
-                                submitted && !user.lastName ? ' has-error'    : ''
+                        <div
+                            className={'form-group' + (
+                                submitted && !user.lastName
+                                    ? ' has-error'
+                                    : ''
                             )}>
                             <label htmlFor="lastName">Last Name</label>
                             <input
-                                type="text"  className="form-control"
-                                name="lastName" value={user.lastName}
+                                type="text"
+                                className="form-control"
+                                name="lastName"
+                                value={user.lastName}
                                 onChange={this.handleChange}/> {submitted && !user.lastName && <div className="help-block">Last Name is required</div>}
                         </div>
                         <div
@@ -147,10 +174,10 @@ class Register extends Component {
                                 onChange={this.handleChange}/> {submitted && !user.password && <div className="help-block">Password is required</div>}
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary">Register</button> 
-                           
+                            <button className="btn btn-primary">Register</button>
+
                             { //this.props.registering &&
-                               //    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" alt="" />
+                                //    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" alt="" />
                             }
                             <Link to="/login" className="btn btn-link">Cancel</Link>
                         </div>
@@ -163,10 +190,7 @@ class Register extends Component {
 
 const mapStateToProps = (state) => {
     // console.log("....state..registration...", state);
-    return {
-       registering: state.registration.registering,
-       isUserLogin: state.login.loggedIn,
-    };
+    return {registering: state.registration.registering, isUserLogin: state.login.loggedIn};
 }
 
 const mapDispatchToProps = dispatch => {
@@ -174,7 +198,7 @@ const mapDispatchToProps = dispatch => {
     return {
         // different func for performing action
         registerUser: (userData) => dispatch(userActions.register(userData)),
-        registerDefaultState:()=> dispatch( userActions.defaultRegState()), 
+        registerDefaultState: () => dispatch(userActions.defaultRegState())
     }
 }
 

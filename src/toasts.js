@@ -25,8 +25,7 @@ export default {
   },
   
   dismiss(msg,options={}){
-    // console.log("..in dismiss alll");
-     return toast.dismiss();
+      return toast.dismiss();
   },
 
   error(msg, options = {}) {

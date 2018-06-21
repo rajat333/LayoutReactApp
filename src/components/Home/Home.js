@@ -20,33 +20,34 @@ const Register = asyncComponent(
     () => import ('../Register/Register').then(module => module.default)
 )
 class Home extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     // reset login status
-    // }
-    componentWillMount(){
-        // console.log("..In Component Will Mount home...",this.props);
-        if(this.props.isUserLogin){
-            this.props.history.push("/dashboard");
+
+    componentWillMount() {
+        if (this.props.isUserLogin) {
+            this
+                .props
+                .history
+                .push("/dashboard");
         }
     }
     render() {
-       return (
-            <div className="Home">         
-            <Header />
-            <div className="main-content"  
-                 style={{  height: "400px", }}
-            > 
-            <Router history={history}>
-                <Switch>
-                    <Route path="/login" component={Login}/>
-                    <Route path="/contactus" component={ContactUs}/>
-                    <Route path="/about" component={AboutUs}/>
-                    <Route path="/register" component={Register}/>
-                    </Switch>
-             </Router>
-            </div>
-            <Footer />
+        return (
+            <div className="Home">
+                <Header/>
+                <div
+                    className="main-content"
+                    style={{
+                        height: "400px"
+                    }}>
+                    <Router history={history}>
+                        <Switch>
+                            <Route path="/login" component={Login}/>
+                            <Route path="/contactus" component={ContactUs}/>
+                            <Route path="/about" component={AboutUs}/>
+                            <Route path="/register" component={Register}/>
+                        </Switch>
+                    </Router>
+                </div>
+                <Footer/>
             </div>
         );
     }
@@ -54,9 +55,7 @@ class Home extends React.Component {
 
 const mapStateToProps = (state) => {
     // console.log("....state..person..login....", state);
-    return {
-        isUserLogin: state.login.loggedIn,
-    };
+    return {isUserLogin: state.login.loggedIn};
 }
 
-export default connect(mapStateToProps,null)(Home);
+export default connect(mapStateToProps, null)(Home);

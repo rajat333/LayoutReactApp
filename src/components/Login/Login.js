@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import  CryptoJS from "crypto-js";
 import toast from '../../toasts';
 import {userActions} from "../../actions/users-action";
+import { userService } from '../../services/userService';
 // import { userConstants } from '../../actions/users-action';
 
 class Login extends React.Component {
@@ -20,7 +21,6 @@ class Login extends React.Component {
      
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.renderSuccessToast = this.renderSuccessToast.bind(this);
         this.notifySuccess = this.notifySuccess.bind(this);
         this.notifyError = this.notifyError.bind(this);
     }
@@ -33,64 +33,61 @@ class Login extends React.Component {
         toast.error(msg);   
     }
     componentWillMount(){
-        // console.log("...comp will mount....");
          if(this.props.isUserLogin){ 
-           this.props.history.push("/dashboard");
+           toast.dismiss("dismiss");
+           var that = this;
+           setTimeout( ()=> {
+            that.props.history.push("/dashboard");
+           },2000);
+          
         }
     }
 
     componentWillReceiveProps(nextProps){
-        // console.log("..Login nextprops..",nextProps);
-        if(nextProps.isUserLogin){
-            //calling toast for login success
-            this.notifySuccess("Login Successful !");
+        if(nextProps.isUserLogin && nextProps.isFormSubumit){
+             this.notifySuccess("Login Successful !");
             setTimeout(() => {
-                nextProps.history.push("/dashboard"); 
+                nextProps.changeFormSubmitValue(); 
+                toast.dismiss("dismiss");
+                nextProps.history.push("/dashboard");
             }, 1000);
         }
 
-        if(nextProps.isFormSubumit){
-            // console.log("....informsubmit...");
-            var that = this;
+        if(nextProps.isFormSubumit && !nextProps.isUserLogin){
+           var that = this;
             setTimeout(() => {
-                that.props.changeFormSubmitValue();
+                nextProps.changeFormSubmitValue(); 
+                toast.dismiss("dismiss");
                 that.setState({  
                                 submitted: false,
                              }); 
-            }, 2000);
-             
-        }
+                }, 3000);
+         }
 
-         toast.dismiss("dismiss");
     } 
 
      componentWillUnmount(){
          //disable all login action to default value i.e intial State
-        // console.log("...Login..ComponentWillUnMount..");
-        this.props.loginDefaultState();    
+        if(! userService.isUserLogIn() ){
+              toast.dismiss("dismiss");
+                this.props.loginDefaultState();  
+       }
      }
 
-    renderSuccessToast() {
-        // console.log("..inrenderSuccesToast...");
-    //  toast.warn("Registration Successfull !");
-    }
     handleChange(e) { 
         toast.dismiss("dismiss");
         e.preventDefault();
         const {name, value} = e.target;
         this.setState({[name]: value});
-        
     }
 
     handleSubmit(e) {
         e.preventDefault();
         this.setState({submitted: true});
         const {username, password} = this.state;
-        // const { dispatch } = this.props; console.log("...this props///",this.props);
-         this.refs.myInput.focus(); 
+        this.refs.myInput.focus(); 
         if (username && password) {
-            // dispatch(userActions.login(username, password));
-           this.props
+            this.props
                 .loginUser({username: username, password: password});
         }
     }
@@ -100,11 +97,7 @@ class Login extends React.Component {
         const { isUserRegister , isUserLogin } = this.props;
         return(    
            <div className="LoginPage">
-                <br/><br/><br/> {
-                    // this.props.isUserRegister
-                    //     ? <p style={ { color:"red" } }>Registration Successfull</p>
-                    //     : null
-                } 
+                <br/><br/><br/> 
                 <div className="col-md-6 col-md-offset-3">
                     <h2>Login</h2>
                     <br/><br/>
@@ -112,7 +105,12 @@ class Login extends React.Component {
                          ? this.notifyError("Login Failed") 
                          :""
                     } 
-                    <ToastContainer />
+                    { //(this.props.isUserLogin ===false && this.props.isFormSubumit === true ) ? <ToastContainer /> : ""
+                    }   
+                    {
+                      this.props.isFormSubumit ? <ToastContainer /> : "" 
+                    }
+                   
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div
                             className={'form-group' + (

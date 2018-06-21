@@ -5,13 +5,15 @@ function userRegister(userData) {
         error: '',
         message: ''
     }
-   
+
     if (localStorage.getItem('users')) {
-        var bytes = CryptoJS.AES.decrypt(localStorage.getItem('users'), 'secret key 123');
+        var bytes = CryptoJS
+            .AES
+            .decrypt(localStorage.getItem('users'), 'secret key 123');
         var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     } else 
         var decryptedData = [];
-
+    
     var userArray = localStorage.getItem("users")
         ? decryptedData
         : [];
@@ -33,7 +35,9 @@ function userRegister(userData) {
         }
     } else {
         userArray.push(userData);
-        var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(userArray), 'secret key 123');
+        var ciphertext = CryptoJS
+            .AES
+            .encrypt(JSON.stringify(userArray), 'secret key 123');
         localStorage.setItem("users", ciphertext.toString());
         //localStorage.setItem("users",JSON.stringify(userArray));
         returnObj.error = false;
@@ -50,31 +54,34 @@ function login(userCredits) {
         error: '',
         message: ''
     }
-    // console.log(".......in userService Login...",userCredits);  calling api for
     // user register use here localstorage
-    if(localStorage.getItem('users')){
-           var bytes = CryptoJS.AES.decrypt(localStorage.getItem('users'), 'secret key 123');
-           var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-    }else{
-        
-    }
-    var userArray = localStorage.getItem("users") ? decryptedData : [];
+    if (localStorage.getItem('users')) {
+        var bytes = CryptoJS
+            .AES
+            .decrypt(localStorage.getItem('users'), 'secret key 123');
+        var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    } else {}
+    var userArray = localStorage.getItem("users")
+        ? decryptedData
+        : [];
 
     if (userArray.length > 0) {
         var found = userArray.some(function (element) {
-            //    console.log("...element.....",element)
             return (
                 (element.username === userCredits.username) && (element.password === userCredits.password)
             );
         })
         if (found) {
-            userCredits.nonce = new Date().getTime().toString();
-            var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(userCredits),'secret key 123');
+            userCredits.nonce = new Date()
+                .getTime()
+                .toString();
+            var ciphertext = CryptoJS
+                .AES
+                .encrypt(JSON.stringify(userCredits), 'secret key 123');
             localStorage.setItem("activeUser", ciphertext.toString());
             returnObj.error = false;
             returnObj.message = "Successfully Login User";
         } else {
-            //    console.log("....Cannot LOGIN....");
             returnObj.error = true;
             returnObj.message = "Please check your creditionals";
         }
@@ -88,36 +95,39 @@ function login(userCredits) {
 
 function getAllUsers() {
 
-    if(localStorage.getItem('users')){
-        var bytes = CryptoJS.AES.decrypt(localStorage.getItem('users'), 'secret key 123');
+    if (localStorage.getItem('users')) {
+        var bytes = CryptoJS
+            .AES
+            .decrypt(localStorage.getItem('users'), 'secret key 123');
         var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     }
     var userList = decryptedData || [];
-    console.log("...in service.. userlist..",userList);
     return {userList: userList}
 }
 
 function logOut() {
-    // console.log("...userservice..logout..");
     localStorage.removeItem("activeUser");
     return {success: true}
 }
 
 function getUserById(id) {
 
-    if(localStorage.getItem('users')){
-        var bytes = CryptoJS.AES.decrypt(localStorage.getItem('users'), 'secret key 123');
+    if (localStorage.getItem('users')) {
+        var bytes = CryptoJS
+            .AES
+            .decrypt(localStorage.getItem('users'), 'secret key 123');
         var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     }
     var userData = decryptedData || [];
     const result = userData[id];
-     return {selectedUser: result, userList: userData};
+    return {selectedUser: result, userList: userData};
 }
 
 function isUserLogIn() {
 
     var user = localStorage.getItem("activeUser")
-        ? localStorage.getItem("activeUser") : "";
+        ? localStorage.getItem("activeUser")
+        : "";
     if (user.length === 0) {
         return false;
     } else {

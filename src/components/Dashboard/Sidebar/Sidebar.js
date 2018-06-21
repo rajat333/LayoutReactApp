@@ -19,14 +19,9 @@ class Sidebar extends Component {
             .logout();
     }
 
-    componentWillMount() {
-        // console.log("....sidebar...",this.props);
-    }
+    componentWillMount() {}
 
-    componentWillReceiveProps(nextProps) {
-        // console.log("....Sidebar...",nextProps); const menuPath =
-        // nextProps.currentMenu;
-    }
+    componentWillReceiveProps(nextProps) {}
     render() {
         var menuPath = window
             .location
@@ -74,7 +69,6 @@ class Sidebar extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    // console.log("....state..person..login....", state);
     return {isUserRegister: state.registration.registering};
 }
 

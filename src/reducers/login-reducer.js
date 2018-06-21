@@ -13,7 +13,6 @@ export const loginReducer = (state = intialState, action) => {
     switch (action.type) {
 
         case userConstants.LOGIN_FAILURE:
-            // console.log("..In loginfailure reducer");
             return {
                 ...state,
                 loggedIn: false,
@@ -23,7 +22,6 @@ export const loginReducer = (state = intialState, action) => {
             }
 
         case userConstants.DEFAULT_LOGIN_STATE:
-            // console.log("....default..action...");
             return {
                 ...state,
                 submit: false,
@@ -31,7 +29,6 @@ export const loginReducer = (state = intialState, action) => {
             }
 
         case userConstants.USER_LOGOUT:
-            // console.log("...Logout reducer...");
             return {
                 ...state,
                 loggedIn: false,
@@ -39,7 +36,6 @@ export const loginReducer = (state = intialState, action) => {
             }
 
         case userConstants.LOGIN_SUCCESS:
-            // console.log("..In loginsucc reducer");
             return {
                 ...state,
                 loggedIn: true, //action.data.error
@@ -51,14 +47,13 @@ export const loginReducer = (state = intialState, action) => {
         case userConstants.CHANGE_FORM_STATE:
              return{
                   ...state,
-                  loggedIn: false,
+                  loggedIn: userService.isUserLogIn(),
                   message: "",
                   submit: false,
                   msg: ""
              }    
 
         default:
-            // console.log("..IndefaultLoginreducer");
             return {
                 ...state,
                 loggedIn: userService.isUserLogIn(),

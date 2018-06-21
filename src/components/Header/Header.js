@@ -1,32 +1,31 @@
 import React, {Component} from 'react';
-import {  Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 // import Background from "../../../public/images/frontbg.jpg";
 var sectionStyle = {
     width: "100%",
     height: "400px",
-    marginTop:"51px",
-    backgroundImage: "url(/images/frontbg.jpg)",
-  };
+    marginTop: "51px",
+    backgroundImage: "url(/images/frontbg.jpg)"
+};
 
 class Header extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            searchKey : ''
+            searchKey: ''
         };
-        this.OnInputChangeHandler = this.OnInputChangeHandler.bind(this);
-    }    
-
-    OnInputChangeHandler(event){
-        // console.log("...On Input Change Handler..");
-        this.setState({
-             searchKey: event.target.value,
-        })
+        this.OnInputChangeHandler = this
+            .OnInputChangeHandler
+            .bind(this);
     }
 
-    onSubmit(){
-        // console.log("...On Submit..");
+    OnInputChangeHandler(event) {
+        this.setState({searchKey: event.target.value})
+    }
+
+    onSubmit(event) {
+        event.preventDefault();
     }
     render() {
         return (
@@ -65,19 +64,21 @@ class Header extends Component {
                             <form className="navbar-form navbar-left" role="search">
                                 <div className="form-group-sm">
                                     <div className="input-group">
-                                        <input type="text" className="form-control" 
-                                                value={this.state.searchKey} 
-                                                placeholder="Search"  onChange={ this.OnInputChangeHandler }
-                                        />
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={this.state.searchKey}
+                                            placeholder="Search"
+                                            onChange={this.OnInputChangeHandler}/>
                                         <span className="input-group-btn">
-                                            <button className="btn btn-success btn-sm" onClick={ ()=> this.onSubmit() }>Go!</button>
+                                            <button className="btn btn-success btn-sm" onClick={() => this.onSubmit()}>Go!</button>
                                         </span>
                                     </div>
                                 </div>
 
                             </form>
                             <ul className="nav navbar-nav navbar-right">
-                            <li>
+                                <li>
                                     <Link to="contactus">
                                         <span className="glyphicon glyphicon-phone"></span>
                                         Contact Us</Link>
@@ -97,7 +98,7 @@ class Header extends Component {
                         </div>
                     </div>
                 </nav>
-                <div className="frontbackground" style={ sectionStyle }></div>
+                <div className="frontbackground" style={sectionStyle}></div>
             </div>
 
         );

@@ -6,13 +6,12 @@ const intialState = {
   message: ''
 }
 export const registerReducer = (state = intialState, action)=> {
-  // console.log("...in registration reducer....",action)
+  
   switch (action.type) {
       case userConstants.REGISTER_REQUEST:
         return { registering: true };
     
       case userConstants.REGISTER_SUCCESS:
-      // console.log("..In registration success..",action);
         return { 
           registering: true ,
           error: action.data.error,
@@ -36,7 +35,6 @@ export const registerReducer = (state = intialState, action)=> {
           }  
     
       default:
-        //  console.log("....default..state...");
          return state
   }
 }
