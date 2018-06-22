@@ -7,6 +7,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import toast from '../../toasts';
 import {userActions} from '../../actions/users-action';
 import {userConstants} from "../../_constants/user-constant";
+import SocialButton from './SocialButton';
+
+const handleSocialLogin = (user) => {
+    console.log(user)
+  }
+   
+const handleSocialLoginFailure = (err) => {
+    console.error("Error is:",err);
+  }
 
 class Register extends Component {
     constructor(props) {
@@ -99,6 +108,7 @@ class Register extends Component {
                         //   ""
                     }
                 </div>
+                <div className="row">
                 <div className="col-md-6 col-md-offset-3">
                     {/* React toastify for toast container */}
                     {
@@ -182,6 +192,19 @@ class Register extends Component {
                             <Link to="/login" className="btn btn-link">Cancel</Link>
                         </div>
                     </form>
+                </div>
+                </div>
+                <div className="row">
+                <div className="social-media-login">
+                <SocialButton
+                        provider='facebook'
+                        appId='1832472937028531'
+                        onLoginSuccess={handleSocialLogin}
+                        onLoginFailure={handleSocialLoginFailure}
+                    >
+                Login with Facebook
+              </SocialButton>
+                </div>
                 </div>
             </div>
         );
